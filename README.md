@@ -20,4 +20,8 @@ To stop:
 :StopDcrpc
 ```
 
-Yeah.
+To automatically start the plugin everytime Vim is started, put this in your `.vimrc`:
+
+```
+let g:dcprc_autostart = 1
+```
