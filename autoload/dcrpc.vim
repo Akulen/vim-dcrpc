@@ -11,6 +11,6 @@ func dcrpc#StartDcrpc()
 endfunc
 
 func dcrpc#StopDcrpc()
-    call system('killall vim-dcrpc')
+    call system('rm ' . s:rpc_file)
     call timer_stop(s:dcrptimer)
 endfunc
