@@ -22,7 +22,7 @@ int mainloop() {
         FILE* f;
         f = fopen("/tmp/dcrpc", "r");
         if(!f)
-            exit(0);
+            return 0;
 
         DiscordRichPresence discordPresence;
         memset(&discordPresence, 0, sizeof(discordPresence));
