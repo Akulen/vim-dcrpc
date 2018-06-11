@@ -5,15 +5,13 @@
 
 #include "include/discord_rpc.h"
 
-const char* APPLICATION_ID = "455442010573111308";
+int main(int argc, char* argv[]) {
+    const char* APPLICATION_ID = "455442010573111308";
 
-static void discordInit() {
     DiscordEventHandlers handlers;
     memset(&handlers, 0, sizeof(handlers));
     Discord_Initialize(APPLICATION_ID, &handlers, 1, NULL);
-}
 
-static void mainloop() {
     char buffer[2][256];
     FILE* f;
 
@@ -43,13 +41,6 @@ static void mainloop() {
         Discord_RunCallbacks();
         sleep(5);
     }
-}
-
-int main(int argc, char* argv[]) {
-    discordInit();
-
-    mainloop();
-
     Discord_Shutdown();
     return 0;
 }
