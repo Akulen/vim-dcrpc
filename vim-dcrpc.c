@@ -17,7 +17,7 @@ void mainloop() {
     sleep(6);
 
     while(1) {
-        char buffer[3][256];
+        char buffer[2][256];
 
         FILE* f;
         f = fopen("/tmp/dcrpc", "r");
@@ -36,11 +36,6 @@ void mainloop() {
 
         discordPresence.largeImageKey = "vim_logo";
         discordPresence.largeImageText = "Vim > emacs";
-
-        fgets(buffer[2], sizeof(buffer[2]), f);
-        buffer[2][strlen(buffer[2])-1] = '\0';
-        discordPresence.smallImageKey = buffer[2];
-        discordPresence.smallImageText = "File type";
 
         discordPresence.instance = 0;
         Discord_UpdatePresence(&discordPresence);

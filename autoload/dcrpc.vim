@@ -2,7 +2,7 @@ let s:rpc_file = '/tmp/dcrpc'
 let s:file_dir = expand('<sfile>:p:h')
 
 func dcrpc#WriteTmp(timer)
-    call writefile(['Line ' . line('.') . ' of ' . line('$'), 'Editing ' . expand('%:t'), 'ft_' . &filetype], s:rpc_file)
+    call writefile(['Line ' . line('.') . ' of ' . line('$'), 'Editing ' . expand('%:t')], s:rpc_file)
 endfunc
 
 func dcrpc#StartDcrpc()
