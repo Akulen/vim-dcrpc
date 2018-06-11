@@ -1,6 +1,6 @@
 # vim-dcrpc
 
-![demo pic](tbd)
+![demo pic](https://gitlab.com/betseg/vim-dcrpc/raw/master/pics/demo.png)
 
 # Discord Rich Presence for Vim
 
