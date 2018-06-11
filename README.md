@@ -23,5 +23,5 @@ To stop:
 To automatically start the plugin everytime Vim is started, put this in your `.vimrc`:
 
 ```
-let g:dcprc_autostart = 1
+let g:dcrpc_autostart = 1
 ```
