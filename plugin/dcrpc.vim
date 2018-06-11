@@ -2,7 +2,6 @@ let s:rpc_file = '/tmp/dcrpc'
 let s:file_dir = expand('<sfile>:p:h')
 
 autocmd VimLeave * call system('rm -f ' . s:rpc_file)
-autocmd VimLeave * call system('killall vim-dcrpc')
 
 func dcrpc#WriteTmp(timer)
     call writefile(['Line ' . line('.') . ' of ' . line('$'), 'Editing ' . expand('%:t')], s:rpc_file)
