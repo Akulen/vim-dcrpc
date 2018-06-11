@@ -8,6 +8,7 @@
 int main(int argc, char* argv[]) {
     const char* APPLICATION_ID = "455442010573111308";
 
+
     DiscordEventHandlers handlers;
     memset(&handlers, 0, sizeof(handlers));
     Discord_Initialize(APPLICATION_ID, &handlers, 1, NULL);
@@ -16,8 +17,11 @@ int main(int argc, char* argv[]) {
 
     while(1) {
         char buffer[2][256];
+
         FILE* f;
         f = fopen("/tmp/dcrpc", "r");
+        if(!f)
+            return 0;
 
         DiscordRichPresence discordPresence;
         memset(&discordPresence, 0, sizeof(discordPresence));
@@ -38,8 +42,11 @@ int main(int argc, char* argv[]) {
         Discord_UpdateConnection();
 #endif
         Discord_RunCallbacks();
+
+        fclose(f);
         sleep(5);
     }
+
     Discord_Shutdown();
     return 0;
 }
