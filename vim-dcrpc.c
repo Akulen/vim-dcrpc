@@ -12,12 +12,11 @@ int main(int argc, char* argv[]) {
     memset(&handlers, 0, sizeof(handlers));
     Discord_Initialize(APPLICATION_ID, &handlers, 1, NULL);
 
-    char buffer[2][256];
-    FILE* f;
-
     sleep(6);
 
     while(1) {
+        char buffer[2][256];
+        FILE* f;
         f = fopen("/tmp/dcrpc", "r");
 
         DiscordRichPresence discordPresence;
