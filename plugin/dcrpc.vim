@@ -1,4 +1,5 @@
 let s:rpc_file = '/tmp/dcrpc'
+let s:file_dir = expand('<sfile>:p:h')
 
 autocmd VimLeave * call system('rm -f ' . s:rpc_file)
 autocmd VimLeave * call system('killall vim-dcrpc')
@@ -8,7 +9,7 @@ func dcrpc#WriteTmp(timer)
 endfunc
 
 func dcrpc#StartDcrpc()
-    call system('bash ' . expand('%:p:h') . '/../dcrpc.sh &')
+    call system('bash ' . s:file_dir . '/../dcrpc.sh &')
     let s:dcrptimer = timer_start(5000, 'dcrpc#WriteTmp', {'repeat': -1})
 endfunc
 
