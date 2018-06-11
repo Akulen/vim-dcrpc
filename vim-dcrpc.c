@@ -5,14 +5,15 @@
 
 #include "include/discord_rpc.h"
 
-int main(int argc, char* argv[]) {
-    const char* APPLICATION_ID = "455442010573111308";
+const char* APPLICATION_ID = "455442010573111308";
 
-
+void discordInit() {
     DiscordEventHandlers handlers;
     memset(&handlers, 0, sizeof(handlers));
     Discord_Initialize(APPLICATION_ID, &handlers, 1, NULL);
+}
 
+void mainloop() {
     sleep(6);
 
     while(1) {
@@ -21,7 +22,7 @@ int main(int argc, char* argv[]) {
         FILE* f;
         f = fopen("/tmp/dcrpc", "r");
         if(!f)
-            return 0;
+            exit(0);
 
         DiscordRichPresence discordPresence;
         memset(&discordPresence, 0, sizeof(discordPresence));
@@ -46,6 +47,12 @@ int main(int argc, char* argv[]) {
         fclose(f);
         sleep(5);
     }
+}
+
+int main() {
+    discordInit();
+
+    mainloop();
 
     Discord_Shutdown();
     return 0;
