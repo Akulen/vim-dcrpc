@@ -1,2 +1,2 @@
 all:
-	gcc -Llib -l:libdiscord-rpc.so vim-dcrpc.c -o vim-dcrpc
+	gcc -Llib vim-dcrpc.c -l:libdiscord-rpc.so -o vim-dcrpc
