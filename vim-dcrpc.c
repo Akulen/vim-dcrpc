@@ -13,7 +13,7 @@ void discordInit() {
     Discord_Initialize(APPLICATION_ID, &handlers, 1, NULL);
 }
 
-void mainloop() {
+int mainloop() {
     sleep(6);
 
     while(1) {
@@ -28,7 +28,7 @@ void mainloop() {
         memset(&discordPresence, 0, sizeof(discordPresence));
 
         if(!fgets(buffer[0], sizeof(buffer[0]), f))
-            exit(0);
+            return 0;
         discordPresence.state = buffer[0];
 
         fgets(buffer[1], sizeof(buffer[1]), f);
