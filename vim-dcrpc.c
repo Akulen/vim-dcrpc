@@ -38,11 +38,9 @@ void mainloop() {
         discordPresence.largeImageText = "Vim > emacs";
 
         fgets(buffer[2], sizeof(buffer[2]), f);
-        if(strcmp("ft_", buffer[2]) != 0) {
-            buffer[2][strlen(buffer[2])-1] = '\0';
-            discordPresence.smallImageKey = buffer[2];
-            discordPresence.smallImageText = "File type";
-        }
+        buffer[2][strlen(buffer[2])-1] = '\0';
+        discordPresence.smallImageKey = buffer[2];
+        discordPresence.smallImageText = "File type";
 
         discordPresence.instance = 0;
         Discord_UpdatePresence(&discordPresence);
