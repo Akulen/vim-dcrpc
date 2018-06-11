@@ -4,7 +4,7 @@
 
 # Discord Rich Presence for Vim
 
-Because why not?_
+Because why not?
 
 # Usage
 
