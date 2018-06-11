@@ -1,4 +1,6 @@
 #/bin/bash
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./lib
-./vim-dcrpc
+dir=$(dirname "$0")
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$dir/lib
+$dir/vim-dcrpc
