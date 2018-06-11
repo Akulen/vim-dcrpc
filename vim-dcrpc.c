@@ -7,20 +7,6 @@
 
 const char* APPLICATION_ID = "455442010573111308";
 
-static void updateDiscordPresence(int linenum, int curline, char* filename) {
-    char buffer[2][256];
-    DiscordRichPresence discordPresence;
-    memset(&discordPresence, 0, sizeof(discordPresence));
-    sprintf(buffer[0], "Line: %d of %d", curline, linenum);
-    discordPresence.state = buffer[0];
-    sprintf(buffer[1], "Editing %s", filename);
-    discordPresence.details = buffer[1];
-    discordPresence.largeImageKey = "vim_logo";
-    //discordPresence.smallImageKey = "vim_logo_s";
-    discordPresence.instance = 0;
-    Discord_UpdatePresence(&discordPresence);
-}
-
 static void discordInit() {
     DiscordEventHandlers handlers;
     memset(&handlers, 0, sizeof(handlers));
@@ -28,25 +14,29 @@ static void discordInit() {
 }
 
 static void mainloop() {
-    char buffer[512];
+    char buffer[2][256];
     FILE* f;
-
-    int linenum, curline;
-    char* filename = malloc(512 * sizeof(*filename));
 
     sleep(6);
 
     while(1) {
         f = fopen("/tmp/dcrpc", "r");
-        if(!fgets(buffer, sizeof(buffer), f))
-            exit(0);
-        strcpy(filename, buffer);
-        fgets(buffer, sizeof(buffer), f);
-        curline = atoi(buffer);
-        fgets(buffer, sizeof(buffer), f);
-        linenum = atoi(buffer);
-        updateDiscordPresence(linenum, curline, filename);
 
+        DiscordRichPresence discordPresence;
+        memset(&discordPresence, 0, sizeof(discordPresence));
+
+        if(!fgets(buffer[0], sizeof(buffer[0]), f))
+            exit(0);
+        discordPresence.state = buffer[0];
+
+        fgets(buffer[1], sizeof(buffer[1]), f);
+        discordPresence.details = buffer[1];
+
+        discordPresence.largeImageKey = "vim_logo";
+        //discordPresence.smallImageKey = "vim_logo_s";
+
+        discordPresence.instance = 0;
+        Discord_UpdatePresence(&discordPresence);
 #ifdef DISCORD_DISABLE_IO_THREAD
         Discord_UpdateConnection();
 #endif
