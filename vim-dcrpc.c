@@ -13,22 +13,20 @@ void discordInit() {
     Discord_Initialize(APPLICATION_ID, &handlers, 1, NULL);
 }
 
-int mainloop() {
-    sleep(6);
-
-    while(1) {
+void mainloop() {
+    while(!sleep(5)) {
         char buffer[2][256];
 
         FILE* f;
         f = fopen("/tmp/dcrpc", "r");
         if(!f)
-            return 0;
+            return;
 
         DiscordRichPresence discordPresence;
         memset(&discordPresence, 0, sizeof(discordPresence));
 
         if(!fgets(buffer[0], sizeof(buffer[0]), f))
-            return 0;
+            continue;
         discordPresence.state = buffer[0];
 
         fgets(buffer[1], sizeof(buffer[1]), f);
@@ -45,7 +43,6 @@ int mainloop() {
         Discord_RunCallbacks();
 
         fclose(f);
-        sleep(5);
     }
 }
 
