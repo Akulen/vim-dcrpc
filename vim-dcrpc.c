@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
 
 #include "include/discord_rpc.h"
 
@@ -14,6 +15,7 @@ void discordInit() {
 }
 
 void mainloop() {
+    time_t start = time(0);
     while(!sleep(5)) {
         char buffer[2][256];
 
@@ -35,7 +37,8 @@ void mainloop() {
         discordPresence.largeImageKey = "vim_logo";
         discordPresence.largeImageText = "Vim > emacs";
 
-        discordPresence.instance = 0;
+        discordPresence.startTimestamp = start;
+
         Discord_UpdatePresence(&discordPresence);
 #ifdef DISCORD_DISABLE_IO_THREAD
         Discord_UpdateConnection();
